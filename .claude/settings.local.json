@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "Bash(sed -n '3995,4010p' /Users/aseem/Documents/Himani/src/App.css)",
+      "Bash(sed -n '4185,4200p' /Users/aseem/Documents/Himani/src/App.css)",
+      "Bash(sed -n '4258,4268p' /Users/aseem/Documents/Himani/src/App.css)",
+      "Bash(sed -n '4353,4365p' /Users/aseem/Documents/Himani/src/App.css)",
+      "Bash(sed -n '4447,4460p' /Users/aseem/Documents/Himani/src/App.css)",
+      "Bash(grep -n \"^\\\\.home-about {$\\\\|^\\\\.home-process {$\\\\|^\\\\.home-testimonials {$\\\\|^\\\\.home-tools {$\\\\|^\\\\.home-cta {$\\\\|^\\\\.home-faq {$\\\\|^\\\\.home-destinations {$\\\\|^\\\\.home-marquee-wrap {$\\\\|^\\\\.home-blog {$\" /Users/aseem/Documents/Himani/src/App.css)",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "Bash(find /Users/aseem/Downloads -name \"*.png\" -newer /Users/aseem/Documents/Himani/package.json 2>/dev/null | head -5 *)",
+      "Bash(find /Users/aseem -name \"*himani*\" -o -name \"*Himani*\" -o -name \"*logo*\" 2>/dev/null | grep -v node_modules | grep -v \".git\" | grep -v Library | head -20)",
+      "Bash(find /var/folders /tmp /private/tmp -name \"*.png\" -newer /Users/aseem/Documents/Himani/package.json 2>/dev/null | head -10 *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__resize_window",
+      "mcp__Claude_in_Chrome__read_console_messages",
+      "Bash(grep -o '#[0-9A-Fa-f]\\\\{3,6\\\\}' /Users/aseem/Documents/Himani/src/App.css)",
+      "Bash(grep -A5 '^\\\\..*-hero {' /Users/aseem/Documents/Himani/src/App.css)",
+      "Bash(sed -i '' 's/className=\"btn primary topbar-cta\"/className=\"btn-gold topbar-cta\"/g' /Users/aseem/Documents/Himani/src/App.jsx)",
+      "Bash(sed -i '' 's/className=\"btn primary\"/className=\"btn-gold\"/g' /Users/aseem/Documents/Himani/src/App.jsx)",
+      "Bash(sed -i '' 's/className=\"btn secondary tools-foot-cta\"/className=\"btn-ghost tools-foot-cta\"/g' 's/className=\"btn secondary class-reg-aside-btn\"/className=\"btn-ghost class-reg-aside-btn\"/g' /Users/aseem/Documents/Himani/src/App.jsx)",
+      "Bash(sed -i '' 's/className=\"btn secondary\"/className=\"btn-ghost\"/g' /Users/aseem/Documents/Himani/src/App.jsx)",
+      "Bash(lsof -ti:5173)"
+    ]
+  }
+}

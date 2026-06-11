@@ -2340,7 +2340,7 @@ const marqueeItems = [
 
 const destImages = {
   Australia: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80',
-  'New Zealand': 'https://images.unsplash.com/photo-1730800672210-9ed7e0e1b789?auto=format&fit=crop&w=600&q=80',
+  'New Zealand': '/photos/new-zealand.jpg',
   'United Kingdom': 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80',
   USA: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80',
   Denmark: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?auto=format&fit=crop&w=600&q=80',
@@ -3618,7 +3618,7 @@ const destinationGuides = [
 
 const DEST_IMAGES = {
   Australia: 'https://images.unsplash.com/photo-1524293581917-878a6d017c71?w=900&q=80',
-  'New Zealand': 'https://images.unsplash.com/photo-1730800672210-9ed7e0e1b789?auto=format&fit=crop&w=900&q=80',
+  'New Zealand': '/photos/new-zealand.jpg',
   'United Kingdom': 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80',
   USA: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=80',
   Denmark: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=900&q=80',

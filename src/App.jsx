@@ -187,6 +187,13 @@ const countryDetails = [
     requirement: 'Academic docs, finance proof, Genuine Student profile',
   },
   {
+    name: 'New Zealand',
+    flag: '🇳🇿',
+    duration: 'Bachelor 3 years | Master 1–2 years',
+    budget: 'Approx. NZD 22,000 - 45,000/year',
+    requirement: 'Academic docs, finance proof, genuine student profile',
+  },
+  {
     name: 'United Kingdom',
     flag: '🇬🇧',
     duration: 'Bachelor 3 years | Master 1 year',
@@ -217,7 +224,7 @@ const quickInfoConsultation = {
     'We hear your goals and constraints first, then map how your profile, budget, language path, and timeline line up with the countries you are considering — clear options before you sink time or fees into the wrong corridor.',
   outcomes: [
     'Capture priorities: target countries or cities, budget band, intake timing, and what a good outcome looks like for you and your family',
-    'Compare corridors with intent: fit for your profile, rule and cost differences, and realistic intake rhythms (e.g. Australia, UK, USA, Denmark)',
+    'Compare corridors with intent: fit for your profile, rule and cost differences, and realistic intake rhythms (e.g. Australia, New Zealand, UK, USA, Denmark)',
     'Leave with a short action list: documents to pull, tests or English steps to book, and deadline anchors for each place still on your list',
   ],
 }
@@ -231,6 +238,11 @@ const quickInfoIntakes = {
       name: 'Australia & similar',
       window: 'Often Feb / Jul',
       note: 'High-volume cycles; competitive courses need earlier course search and English readiness.',
+    },
+    {
+      name: 'New Zealand',
+      window: 'Often Feb / Jul',
+      note: 'Similar intake rhythm to Australia; offer of place, funds, and genuine student narrative must align before visa lodgement.',
     },
     {
       name: 'United Kingdom',
@@ -255,7 +267,7 @@ const quickInfoFacts = [
     icon: Globe2,
     label: 'Destination coverage',
     value: 'Multi-country',
-    hint: 'Australia, UK, USA, Denmark, and more — one disciplined process, country-specific checklists.',
+    hint: 'Australia, New Zealand, UK, USA, Denmark, and more — one disciplined process, country-specific checklists.',
   },
   {
     icon: Clock,
@@ -284,6 +296,11 @@ const visaCorridorThemes = {
     'Subclass and CoE alignment: confirm the student visa class matches your course provider and intake.',
     'Genuine Student (GS) narrative, study history, and finances must read consistently across forms and interviews.',
     'Funds for tuition, living costs, and OSHC — acceptable sponsor/bank formats change; verify against current immigration instructions.',
+  ],
+  'New Zealand': [
+    'Fee Paying Student Visa: offer of place from an approved provider must match course dates, fees, and your study plan.',
+    'Genuine student / bona fide applicant narrative, study history, and finances must read consistently across forms and any interview.',
+    'Funds for tuition, living costs, and return travel — verify acceptable sponsor/bank formats against current Immigration New Zealand instructions.',
   ],
   'United Kingdom': [
     'CAS timing, tuition deposit, and TB test (where required) must line up before visa application.',
@@ -483,7 +500,7 @@ function buildVisaCheckerReadout(fields) {
       'Loan in the mix: line up sanction letters, disbursal logic, and how that maps to each corridor’s “available funds” story before interview or submission.',
     )
   }
-  if (budgetBandNpr === 'u10' && (destination === 'USA' || destination === 'United Kingdom')) {
+  if (budgetBandNpr === 'u10' && (destination === 'USA' || destination === 'United Kingdom' || destination === 'New Zealand')) {
     notes.push(
       'You indicated a tighter NPR band for high-cost destinations — course choice, city, and scholarship strategy may need a hard look so your narrative and numbers stay believable in file and interview.',
     )
@@ -525,6 +542,12 @@ const nepalChecklistDestinationExtras = {
     'Overseas Student Health Cover (OSHC) for the CoE period (start/end dates aligned).',
     'Financial capacity evidence per current student subclass rules (acceptable account types, sponsor relationship, history — not only a single “balance” figure).',
     'Health exams or biometrics only if requested in your IMMI flow — follow the letter you receive after application.',
+  ],
+  'New Zealand': [
+    'Offer of place and tuition payment evidence aligned with your visa application and intended study start dates.',
+    'Financial evidence per current student visa funds requirements (acceptable accounts, sponsor relationship, history).',
+    'Medical certificates and police certificates when required for your nationality and intended stay length.',
+    'Health and travel insurance planning — confirm provider and policy expectations before lodgement.',
   ],
   'United Kingdom': [
     'CAS number, deposit and tuition details must match CAS and your financial evidence.',
@@ -1494,7 +1517,7 @@ const TOOLS_DATA = [
     title: 'Visa Eligibility Checker',
     subtitle: 'Student Visa',
     desc: 'Answer a few questions and get a personalised readiness note covering your destination fit, subject area, scholarship position, and financial context.',
-    features: ['Covers AU, UK, USA & Denmark', 'Personalised readiness summary', 'Includes finance & scholarship context'],
+    features: ['Covers AU, NZ, UK, USA & Denmark', 'Personalised readiness summary', 'Includes finance & scholarship context'],
     to: '/tools/visa-eligibility',
     accent: 'var(--brand)',
   },
@@ -2035,7 +2058,7 @@ function VisaEligibilityToolPage() {
     <AnimatedWrapper>
       <ToolPageLayout
         title="Student Visa Eligibility Checker"
-        subtitle="Personal readiness tool for students comparing Australia, the UK, the USA, Denmark, or mixed options."
+        subtitle="Personal readiness tool for students comparing Australia, New Zealand, the UK, the USA, Denmark, or mixed options."
       >
         <StudentVisaEligibilityChecker />
       </ToolPageLayout>
@@ -2179,7 +2202,7 @@ function AnimatedWrapper({ children }) {
 }
 
 const WMAP_URL  = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
-const DEST_IDS  = new Set([36, 826, 840, 208])  // Australia, UK, USA, Denmark
+const DEST_IDS  = new Set([36, 554, 826, 840, 208])  // Australia, New Zealand, UK, USA, Denmark
 const ORIGIN_IDS = new Set([524, 356])           // Nepal, India
 
 const W = 960, H = 500
@@ -2204,10 +2227,11 @@ function WorldMapSVG() {
 
   const ORIGIN = [84, 28]
   const DESTS = [
-    { coord: [133, -26], label: 'Australia', flag: '🇦🇺', dx: 10,  dy: -10 },
-    { coord: [-3,   53], label: 'UK',        flag: '🇬🇧', dx: -10, dy: -12, anchor: 'end' },
-    { coord: [-98,  39], label: 'USA',       flag: '🇺🇸', dx: -10, dy: -12, anchor: 'end' },
-    { coord: [13,   58], label: 'Denmark',   flag: '🇩🇰', dx: 10,  dy: -12 },
+    { coord: [133, -26], label: 'Australia',   flag: '🇦🇺', dx: 10,  dy: -10 },
+    { coord: [174, -41], label: 'New Zealand', flag: '🇳🇿', dx: 10,  dy: 14 },
+    { coord: [-3,   53], label: 'UK',          flag: '🇬🇧', dx: -10, dy: -12, anchor: 'end' },
+    { coord: [-98,  39], label: 'USA',         flag: '🇺🇸', dx: -10, dy: -12, anchor: 'end' },
+    { coord: [13,   58], label: 'Denmark',     flag: '🇩🇰', dx: 10,  dy: -12 },
   ]
 
   const pt = (coord) => projection(coord) ?? [0, 0]
@@ -2305,17 +2329,18 @@ function AnimatedCount({ to, suffix = '' }) {
 
 const marqueeItems = [
   { value: '1,200+', label: 'Students guided' },
-  { value: '4', label: 'Countries covered' },
+  { value: '5', label: 'Countries covered' },
   { value: '8+', label: 'Years of experience' },
   { value: '98%', label: 'Client satisfaction' },
   { value: '2', label: 'Global offices' },
   { value: '500+', label: 'Visas processed' },
-  { value: 'AU · UK · US · DK', label: 'Destinations' },
+  { value: 'AU · NZ · UK · US · DK', label: 'Destinations' },
   { value: 'Free', label: 'First consultation' },
 ]
 
 const destImages = {
   Australia: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80',
+  'New Zealand': 'https://images.unsplash.com/photo-1469521669192-4af45ec9d736?auto=format&fit=crop&w=600&q=80',
   'United Kingdom': 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80',
   USA: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80',
   Denmark: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?auto=format&fit=crop&w=600&q=80',
@@ -2384,7 +2409,7 @@ function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.52, ease: [0.22, 1, 0.36, 1] }}
             >
-              Expert guidance to universities in Australia, UK, USA &amp; Denmark — personalised to your profile, budget, and timeline.
+              Expert guidance to universities in Australia, New Zealand, UK, USA &amp; Denmark — personalised to your profile, budget, and timeline.
             </motion.p>
 
             <motion.div
@@ -2443,12 +2468,12 @@ function HomePage() {
           { icon: <ShieldCheck size={15}/>, label: 'MARA Registered Migration Agents' },
           { icon: <Star size={15}/>, label: '98% Visa Success Rate' },
           { icon: <GraduationCap size={15}/>, label: '1,200+ Students Guided' },
-          { icon: <Globe2 size={15}/>, label: 'Australia · UK · USA · Denmark' },
+          { icon: <Globe2 size={15}/>, label: 'Australia · NZ · UK · USA · Denmark' },
           { icon: <Clock size={15}/>, label: '8+ Years of Experience' },
           { icon: <ShieldCheck size={15}/>, label: 'MARA Registered Migration Agents' },
           { icon: <Star size={15}/>, label: '98% Visa Success Rate' },
           { icon: <GraduationCap size={15}/>, label: '1,200+ Students Guided' },
-          { icon: <Globe2 size={15}/>, label: 'Australia · UK · USA · Denmark' },
+          { icon: <Globe2 size={15}/>, label: 'Australia · NZ · UK · USA · Denmark' },
           { icon: <Clock size={15}/>, label: '8+ Years of Experience' },
         ]
         return (
@@ -3025,7 +3050,7 @@ function AboutPage() {
             { n: 1200, s: '+', label: 'Students Guided' },
             { n: 98,   s: '%', label: 'Visa Success Rate' },
             { n: 8,    s: '+', label: 'Years Experience' },
-            { n: 4,    s: '',  label: 'Countries Covered' },
+            { n: 5,    s: '',  label: 'Countries Covered' },
           ].map(({ n, s, label }) => (
             <div key={label} className="abt-stat">
               <strong><AnimatedCount to={n} suffix={s} /></strong>
@@ -3046,7 +3071,7 @@ function AboutPage() {
             </p>
             <ul className="abt-list">
               <li>Offices in <strong>Brisbane, Australia</strong> and <strong>Chitwan, Nepal</strong></li>
-              <li>Specialists in Australia, UK, USA &amp; Denmark pathways</li>
+              <li>Specialists in Australia, New Zealand, UK, USA &amp; Denmark pathways</li>
               <li>MARA-registered migration agents on staff</li>
               <li>Dedicated IELTS &amp; PTE preparation classes</li>
               <li>End-to-end: admissions → CoE → visa → departure</li>
@@ -3274,7 +3299,7 @@ function ServicesPage() {
           { icon: <ShieldCheck size={15}/>, text: 'MARA Registered' },
           { icon: <MapPin size={15}/>,      text: 'Brisbane, Australia' },
           { icon: <Globe2 size={15}/>,      text: 'Chitwan, Nepal' },
-          { icon: <GraduationCap size={15}/>, text: 'AU · UK · USA · Denmark' },
+          { icon: <GraduationCap size={15}/>, text: 'AU · NZ · UK · USA · Denmark' },
           { icon: <Headphones size={15}/>,  text: 'End-to-end support' },
         ].map((p) => (
           <span key={p.text} className="svc-trust-pill">{p.icon}{p.text}</span>
@@ -3332,7 +3357,7 @@ function ServicesPage() {
           {[
             { icon: <ShieldCheck size={22}/>, title: 'MARA Registered Agents', desc: 'Legally authorised migration advice you can trust at every step.' },
             { icon: <MapPin size={22}/>,       title: 'Brisbane & Nepal Offices', desc: 'On-the-ground support in Australia and Nepal — no distance barriers.' },
-            { icon: <GraduationCap size={22}/>, title: 'All Major Destinations', desc: 'Expert guidance for Australia, UK, USA, and Denmark programs.' },
+            { icon: <GraduationCap size={22}/>, title: 'All Major Destinations', desc: 'Expert guidance for Australia, New Zealand, UK, USA, and Denmark programs.' },
             { icon: <Headphones size={22}/>,   title: 'Personalised Plans', desc: 'Every student gets a strategy tailored to their profile and goals.' },
           ].map((pt) => (
             <div key={pt.title} className="svc-why-point">
@@ -3407,6 +3432,51 @@ const destinationGuides = [
       'Valid English score (IELTS/PTE or as accepted)',
       'Financial evidence aligned with sponsor narrative',
       'Offer/enrolment evidence and personal study statement',
+    ],
+  },
+  {
+    name: 'New Zealand',
+    flag: '🇳🇿',
+    shortInfo:
+      'Career-focused study destination with strong quality controls, practical learning culture, and clear student visa pathways.',
+    overview:
+      'New Zealand is strong for employability-focused programs, practical learning, and structured post-study planning when files are prepared carefully.',
+    whoItFits:
+      'Students looking for career-aligned courses, English-medium instruction, and a manageable study-to-work pathway in a high-quality education system.',
+    tuitionBand: 'Approx. NZD 22,000 - 45,000 per year',
+    livingBand: 'Approx. NZD 20,000 - 25,000 per year by city and lifestyle',
+    visaApplicationCost:
+      'Approx. NZD 430 - 750 (student visa application, base applicant; policy updates can change this).',
+    dependentCost:
+      'Approx. partner NZD 430 - 750 + child NZD 230 - 350 each (plus living and insurance uplift).',
+    englishRequirement:
+      'Commonly IELTS/PTE/TOEFL evidence; exact score bands vary by institution, level, and visa-file context.',
+    prAvailability:
+      'Possible long-term pathway for eligible graduates under changing migration settings; not automatic and should never be promised.',
+    insuranceRequirement:
+      'Health and travel insurance is commonly required or strongly advised for international students for the study period.',
+    intakePattern: 'Major intakes: February and July (some programs run additional starts).',
+    visaPath:
+      'Student route planning usually links offer of place, genuine student narrative, finance evidence, and health/character sequencing.',
+    famousUniversities: [
+      'University of Auckland',
+      'University of Otago',
+      'Victoria University of Wellington',
+      'University of Canterbury',
+      'Massey University',
+      'Auckland University of Technology (AUT)',
+    ],
+    scholarships: [
+      'New Zealand Excellence Awards (institution-administered, competitive)',
+      'University merit scholarships for international students',
+      'Faculty-level tuition reductions for strong academics',
+      'Early acceptance or international excellence grants (institution-specific)',
+    ],
+    keyDocuments: [
+      'Academic transcripts and completion/provisional documents',
+      'Valid English score (IELTS/PTE or as accepted)',
+      'Financial evidence aligned with sponsor narrative',
+      'Offer of place and personal study statement',
     ],
   },
   {
@@ -3548,6 +3618,7 @@ const destinationGuides = [
 
 const DEST_IMAGES = {
   Australia: 'https://images.unsplash.com/photo-1524293581917-878a6d017c71?w=900&q=80',
+  'New Zealand': 'https://images.unsplash.com/photo-1469521669192-4af45ec9d736?w=900&q=80',
   'United Kingdom': 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80',
   USA: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=80',
   Denmark: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=900&q=80',
@@ -3555,6 +3626,7 @@ const DEST_IMAGES = {
 
 const DEST_GRADIENT_FALLBACK = {
   Australia: 'linear-gradient(135deg,#1a4a6e,#0d2d4a)',
+  'New Zealand': 'linear-gradient(135deg,#1a4a3a,#0d2d22)',
   'United Kingdom': 'linear-gradient(135deg,#1a1a4e,#2d2060)',
   USA: 'linear-gradient(135deg,#1a2a5e,#0a1a3a)',
   Denmark: 'linear-gradient(135deg,#8b1a2a,#4a0d1a)',
@@ -3574,7 +3646,7 @@ function DestinationsPage() {
           <p className="dest-eyebrow">Study Abroad Destinations</p>
           <h1 className="dest-hero-h1">Find Your <em>Perfect Destination</em></h1>
           <p className="dest-hero-sub">
-            Expert guidance to Australia, UK, USA &amp; Denmark — personalised for students from Nepal.
+            Expert guidance to Australia, New Zealand, UK, USA &amp; Denmark — personalised for students from Nepal.
           </p>
           <div className="dest-hero-actions">
             <Link to="/contact#book-meeting" className="btn-gold">Book destination counselling</Link>

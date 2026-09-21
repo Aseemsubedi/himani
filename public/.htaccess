@@ -1,0 +1,17 @@
+# Hostinger / LiteSpeed — serve the Vite SPA from public_html
+DirectoryIndex index.php index.html
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Existing files stay as-is
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # React Router SPA fallback
+  RewriteRule ^ index.php [L]
+</IfModule>

@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Hostinger upload bundles
+*.zip
+himani-*-fix.zip
+himani-*-upload.zip

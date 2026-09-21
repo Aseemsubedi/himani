@@ -28,6 +28,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR || './public_html/' }}
+          # Hostinger website root (change via repo variable FTP_SERVER_DIR if needed)
+          server-dir: ./public_html/
           protocol: ftps
           dangerous-clean-slate: false
